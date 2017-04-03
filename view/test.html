@@ -1,0 +1,61 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--  此文件用于定义头条-->
+<html>
+<head>
+	<link rel="stylesheet" href="css/bootstrap.min.css" >
+	<script href="js/bootstrap.min.js"></script>
+	<script href="js/jquery-3.1.1.min.js"></script>
+	<style>
+	.div-float{
+		float: left;
+	}
+	.div-float1{
+		float:right;
+	}
+	</style>
+</head>
+<body>
+<div>
+<div class="div-float" style="width:30em;margin:0em 0em 0em 10em;">
+<h1>hotel manage system</h1>
+</div>
+<div id ="registertag" class="div-float1" style="width:10em;margin:2em 0em 0em 2em;font-size:1.2em">
+	<!--<a href="#">登陆</a>-->
+</div>
+<div id ="logintag" class="div-float1" style="width:10em;margin:2em 0em 0em 2em;font-size:1.2em">
+	<!--<a href="#">注册</a>-->
+</div>
+</div>
+<script>
+	/*
+	首先应该尝试去遍历的数组的头元素，然后在执行
+	*/
+	function getCookie(cname)
+	{
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for(let i=0; i<ca.length; i++)
+		{
+			var c = ca[i].trim();
+			if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+		}
+		return "";
+	}
+
+	function change_logintag(){
+		var username=getCookie('username');
+		if(username==""){
+			document.getElementById("logintag").innerHTML=`<a href="login.php">登录</a>`;
+			document.getElementById("registertag").innerHTML=`<a href="register.php">注册</a>`;
+		}
+		else{
+			document.getElementById("logintag").innerHTML=`welcome ${ username }`;
+			document.getElementById("registertag").innerHTML=`<a href="#">登出</a>`;
+		}
+	}
+</script>
+<script>
+	change_logintag();
+</script>
+</body>
+</html>
