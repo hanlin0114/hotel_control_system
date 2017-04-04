@@ -15,7 +15,7 @@ $u_id=$_SESSION['u_id'];
 $c_id="232331";
 $c_conn=$conn->return_conn();
 //$string="$r_id,$c_id,'$startDate','$endDate'";
-$result=mysqli_query($c_conn,"call insert_bill($r_id,$u_id,'$c_id','$startDate','$endDate',2)");
+$result=mysqli_query($c_conn,"call insert_bill($r_id,$u_id,'$c_id','$startDate','$endDate',2,$totalPrice)");
 echo mysqli_error($c_conn);
 $conn->select_db($tableName="bill_info","b_id",$where="b_rom_id=$r_id and c_id_code='$c_id' and b_r_start_time='$startDate' and b_r_end_time='$endDate' and b_status=2");
 $result=$conn->return_result();

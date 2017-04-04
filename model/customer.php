@@ -66,16 +66,27 @@ class customer{//定义顾客类
 		else
 			return 0;
 	}
-	public function show_bill(){//显示自己的订单
+	public function show_bill($detect){//显示自己的订单
 		$db_conn=new db_control();
 		$db_conn->db_connect();
-		$db_conn->select_db($tableName,"*","u_id=$this->u_id");
+		$db_conn->select_db($tableName="bill_info","*","b_customer_id=$this->u_id  $detect");
 		$result=$db_conn->return_result();
-		if($result){
+		if(isset($result)){
 			return $result;//如果有结果返回结果
 		}
 		else
 			return 0;//无结果或查询出错返回0
+	}
+	public function showInfo(){
+	    $db_conn=new db_control();
+	    $db_conn->db_connect();
+	    $db_conn->select_db($tableName="customer_list","*","u_id=$this->u_id");
+	    $result=$db_conn->return_result();
+	    if(isset($result))
+	        return $result;
+	    else 
+	        return 0;
+	    
 	}
 	public function delete_bill($b_id){//暂时的删除策略是从数据库中删除掉
 		$db_conn=new db_control();
