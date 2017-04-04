@@ -44,9 +44,10 @@ class customer{//定义顾客类
 		$db_conn=new db_control();//设置最基础的数据库信息
 		$db_conn->db_connect();//数据库连接
 		$where="u_id=$this->u_id";
-		$db_conn->update_db($tablename,"username='$n_username'",$where);
+		$arr=array('username'=>$n_username);
+		$db_conn->update_db($tablename="customer_list",$arr,$where="u_id=$this->u_id");
 		$result=$db_conn->return_result();
-		if($result){
+		if(isset($result)){
 			$this->username=$n_username;
 			return 1;//更改成功，并且
 		}
@@ -58,9 +59,10 @@ class customer{//定义顾客类
 		$db_conn=new db_control();
 		$db_conn->db_connect();
 		$where="u_id=$this->u_id";
-		$db_conn->update_db($tablename,"password='$n_passwd'", $where);
+		$arr=array('password'=>(string)$n_password);
+		$db_conn->update_db($tablename="customer_list",$arr, $where);
 		$result=$db_conn->return_result();
-		if($result){
+		if(isset($result)){
 			return 1;
 		}
 		else
