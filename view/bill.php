@@ -49,25 +49,25 @@
             <a class="navbar-brand" href="index.html">hotel_control_system</a>
         </div>
         <!-- Top Menu Items -->
-        <ul class="nav navbar-right top-nav">
+            <ul class="nav navbar-right top-nav">
 
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#"><i class="fa fa-fw"></i> 打卡</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw "></i> 下班</a>
-                    </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 打卡</a>
+                        </li>
+                        <li>
+                            <a href="/hotel_control_system/control/clock_out.php"><i class="fa fa-fw "></i> 下班</a>
+                        </li>
 
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw"></i> 登出</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/hotel_control_system/control/a_loginout"><i class="fa fa-fw"></i> 登出</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
@@ -84,7 +84,7 @@
                     <a href="maintenance.php"><i class="fa fa-fw"></i> 房间维护</a>
                 </li>
                 <li class="active">
-                    <a href="forms.html"><i class="fa fa-fw"></i> 统计流水</a>
+                    <a href="bill.php"><i class="fa fa-fw"></i> 统计流水</a>
                 </li>
             </ul>
         </div>

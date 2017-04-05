@@ -55,15 +55,15 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw"></i> 打卡</a>
+                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 打卡</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-fw "></i> 下班</a>
+                            <a href="/hotel_control_system/control/clock_out.php"><i class="fa fa-fw "></i> 下班</a>
                         </li>
 
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw"></i> 登出</a>
+                            <a href="/hotel_control_system/control/a_loginout"><i class="fa fa-fw"></i> 登出</a>
                         </li>
                     </ul>
                 </li>
@@ -84,7 +84,7 @@
                         <a href="maintenance.php"><i class="fa fa-fw"></i> 房间维护</a>
                     </li>
                     <li>
-                        <a href="bill.html"><i class="fa fa-fw"></i> 统计流水</a>
+                        <a href="bill.php"><i class="fa fa-fw"></i> 统计流水</a>
                     </li>
                 </ul>
             </div>
