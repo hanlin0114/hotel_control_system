@@ -26,7 +26,7 @@ class admin_user{
 		$query=array("r_id"=>$r_id,"r_size"=>$r_size,"r_detail"=>$r_detail,"r_price"=>$r_price,"r_discount"=>$r_discount,"r_status"=>$r_status);
 		$db_conn->insert_db($tablename="room_list",$query);
 		$result=$db_conn->return_result();
-		if($result)
+		if(isset($result))
 			return 1;
 		else
 			return 0;

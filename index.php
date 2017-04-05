@@ -10,5 +10,5 @@ if(empty($_SESSION['username'])){
 	//echo "welcome11"."<br/>";
 }
 else 
-	echo "welcome"."<br/>";
+	header('location:view/customer_homepage.php');
 ?>

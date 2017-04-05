@@ -9,7 +9,7 @@ class user_lgr{
 		$passwd=md5($passwd);//密码使用MD5加密
 		$db_conn=new db_control();//此处应进行主机地址，数据库名字，登录密码，密码设置
 		$db_conn->db_connect();
-		$db_conn->select_db($tableName="customer_list","*","email='$email' and password = '$passwd'");
+		$db_conn->select_db($tableName="admin_list","*","email='$email' and password = '$passwd'");
 		$result=$db_conn->return_result();//此处将结果集返回
 		$obj=mysqli_fetch_object($result);
 		if(isset($obj)){//登陆成功就将用户信息写入session
@@ -23,12 +23,12 @@ class user_lgr{
 		else
 			return 0;//失败返回false
 	}
-	public function n_register($email,$username,$passwd,$sex,$c_level){//此方法为一般用户的注册方法//用户名组测其实并没有所谓，最重
+	public function a_register($email,$username,$passwd,$sex,$c_level){//此方法为一般用户的注册方法//用户名组测其实并没有所谓，最重
 		//最重要的，用户的email地址不能重复
 		$passwd=md5($passwd);
 		$db_conn=new db_control();//这个是针对数据库的内容
 		$db_conn->db_connect();
-		$db_conn->select_db("customer_list","*","email='$email'");
+		$db_conn->select_db("admin_list","*","email='$email'");
 		$result=$db_conn->return_result();
 		$row=mysqli_fetch_array($result);
 		if(isset($row)){
@@ -36,9 +36,9 @@ class user_lgr{
 		}
 		else{
 			$col=array('email'=>$email,'username'=>$username,'password'=>$passwd,'sex'=>$sex,'c_level'=>$c_level);
-			$db_conn->insert_db($tablename="customer_list",$col);
+			$db_conn->insert_db($tablename="admin_list",$col);
 			$result=$db_conn->return_result();
-			if($result){
+			if(isset($result)){
 				return 1;//1tag注册成功
 			}
 			else{
@@ -49,6 +49,7 @@ class user_lgr{
 	public function signout(){
         session_destroy();
 	}
+
 
 }
 ?>
