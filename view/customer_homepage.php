@@ -118,7 +118,7 @@ $(document).ready(function(){
 	        $('#pagecount').empty();
 	        },  
 	        error:function(){  
-	        li="没有适合的条件，请重新查询";
+	        
 	        $('#tbody').append(li);
 	        }  
 	        });  

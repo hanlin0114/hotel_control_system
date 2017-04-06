@@ -52,7 +52,7 @@ class admin_user{
 		//此方法用于更新房间信息
 		$db_conn=new db_control();
 		$db_conn->db_connect();
-		$db_conn->select_db($tableName,"useable","where rom_id=$rom_id");
+		$db_conn->select_db($tableName="room_list","m_tag","where rid=$rid");
 		$result=$db_conn->return_result();
 		$obj=mysqli_fetch_object($result);
 		if($obj->usebale==1){//当房间正在被使用或者没有置为可用时

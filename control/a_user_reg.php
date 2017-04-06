@@ -12,7 +12,7 @@ else if($sex=="男性")
 	$sex=1;
 else if($sex=="女性")
 	$sex=2;
-$result=$user_reg->n_register($email, $username, $password, $sex,1);//只要是注册了，就是用户等级就是1（普通用户）
+$result=$user_reg->a_register($email, $username, $password, $sex,1);//只要是注册了，就是用户等级就是1（普通用户）
 if($result==1){
 	header('Location:../view/a_login.php');
 }

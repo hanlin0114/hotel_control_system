@@ -52,7 +52,7 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span id="welcome"></span><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 打卡</a>
@@ -112,15 +112,16 @@
                         <thead>
                         <tr id="roomDetail">
                             <th>姓名</th>
-                            <th>上班状态</th>
                             <th>出勤情况</th>
                             <th>级别</th>
                             <!--  <th>###</th> -->
                         </tr>
-                        <tbody id="employer">
+                        </thead>
+                        <tbody id="tbody">
 
                         </tbody>
-                        </thead>
+                        <div id="pagecount" align="center"></div>
+                        
                     </table>
                 </div>
 
@@ -138,15 +139,111 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
+    <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/depart.js"><</script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="js/plugins/morris/raphael.min.js"></script>
-    <script src="js/plugins/morris/morris.min.js"></script>
-    <script src="js/plugins/morris/morris-data.js"></script>
+
+    <script>
+    $(document).ready(function(){  
+		getUsername();
+	});
+    var curPage = 1; //当前页码  
+    var total,pageSize,totalPage;  
+    //获取数据  
+    function getData(page){   
+    $.ajax({  
+    type: 'POST',  
+    url: '/hotel_control_system/control/admin_list.php',  
+    data: {'pageNum':page-1},  
+    dataType:'json',    
+    success:function(json){  
+    $("#tbody").empty();  
+    total = json.total; //总记录数  
+    pageSize = json.pageSize; //每页显示条数  
+    curPage = page; //当前页  
+    totalPage = json.totalPage; //总页数  
+    var li = "";  
+    var list = json.list;  
+    var level;
+    var moment
+    $.each(list,function(index,array){ //遍历json数据列  
+    //li += "<li><a href='#'>"+array['title']+"</a></li>";  
+        if(array['a_level']==1)
+            level="一般管理员";
+        if(array['a_level']==2)
+            level="经理";
+        if(array['a_level']==3)
+            level="超级管理员";
+        if(array['a_level']==0)
+            level="离职";
+
+        if(array['moment']==1)
+            moment="上班";
+        if(array['moment']==0)
+            moment="下班";
+        if(array['moment']==2)
+            moment="请假";
+        if(array['moment']==3)
+            moment="缺勤";
+        if(array['moment']==4)
+            moment="迟到";
+
+
+        li+="<tr>";
+        li+="<td>"+array['a_name']+"</td>";
+        li+="<td>"+moment+"</td>";
+        li+="<td>"+level+"</td>";
+        li+="</tr>";
+        });  
+    $("#tbody").append(li);  
+    },  
+    complete:function(){ //生成分页条  
+    getPageBar();  
+    },  
+    error:function(){  
+    alert("数据加载失败");  
+    }  
+    });  
+    }
+    function getPageBar(){
+        //页码大于最大页数
+        if(curPage>totalPage) curPage=totalPage;
+        //页码小于1
+        if(curPage<1) curPage=1;
+        pageStr = "<span>共"+total+"条</span><span>"+curPage+"/"+totalPage+"</span>";
+
+        //如果是第一页
+        if(curPage==1){
+            pageStr += "<span>首页</span><span>上一页</span>";
+        }else{
+            pageStr += "<span><a href='javascript:void(0)' rel='1'>首页</a></span><span><a href='javascript:void(0)' rel='"+(curPage-1)+"'>上一页</a></span>";
+        }
+
+        //如果是最后页
+        if(curPage>=totalPage){
+            pageStr += "<span>下一页</span><span>尾页</span>";
+        }else{
+            pageStr += "<span><a href='javascript:void(0)' rel='"+(parseInt(curPage)+1)+"'>下一页</a></span><span><a href='javascript:void(0)' rel='"+totalPage+"'>尾页</a></span>";
+        }
+
+        $("#pagecount").html(pageStr);
+    }
+    $(function(){  
+    	getData(1);  
+        $("#pagecount").on('click','span a',function(){  
+        var rel = $(this).attr("rel");  
+        if(rel){  
+        getData(rel);  
+        }  
+        });
+    });
+    </script>
 
 </body>
 

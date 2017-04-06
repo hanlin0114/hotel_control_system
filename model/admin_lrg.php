@@ -14,9 +14,9 @@ class user_lgr{
 		$obj=mysqli_fetch_object($result);
 		if(isset($obj)){//登陆成功就将用户信息写入session
 			
-			$_SESSION["username"]=$obj->username;//写入用户名
-			$_SESSION["u_id"]=$obj->u_id;//写入用户标志
-			$_SESSION["u_level"]=$obj->u_level;//写入用户等级
+			$_SESSION["username"]=$obj->a_name;//写入用户名
+			$_SESSION["u_id"]=$obj->a_id;//写入用户标志
+			$_SESSION["u_level"]=$obj->a_level;//写入用户等级
 			//setcookie("userrname",$obj->username);//写入cookie以用来用户交互
 			return 1;
 		}
@@ -35,7 +35,7 @@ class user_lgr{
 			return -1;//这里-1tag表示的是用户名已经被注册
 		}
 		else{
-			$col=array('email'=>$email,'username'=>$username,'password'=>$passwd,'sex'=>$sex,'c_level'=>$c_level);
+			$col=array('email'=>$email,'a_name'=>$username,'password'=>$passwd,'sex'=>$sex,'a_level'=>$c_level);
 			$db_conn->insert_db($tablename="admin_list",$col);
 			$result=$db_conn->return_result();
 			if(isset($result)){

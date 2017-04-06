@@ -1,5 +1,5 @@
 <?php 
-require_once "F:/Apache24/htdocs/hotel_control_system/view/headline.php";
+require_once "F:/Apache24/htdocs/hotel_control_system/view/a_headline.php";
 ?>
 <html>
 <head>
