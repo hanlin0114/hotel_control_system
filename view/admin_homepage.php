@@ -55,7 +55,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span id="welcome"></span><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 打卡</a>
+                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 上班</a>
                         </li>
                         <li>
                             <a href="/hotel_control_system/control/clock_out.php"><i class="fa fa-fw "></i> 下班</a>
@@ -63,7 +63,7 @@
 
                         <li class="divider"></li>
                         <li>
-                            <a href="/hotel_control_system/control/a_loginout"><i class="fa fa-fw"></i> 登出</a>
+                            <a href="/hotel_control_system/control/a_loginout.php"><i class="fa fa-fw"></i> 登出</a>
                         </li>
                     </ul>
                 </li>
@@ -85,6 +85,9 @@
                     </li>
                     <li>
                         <a href="bill.php"><i class="fa fa-fw"></i> 统计流水</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw"></i>管理已注册顾客</a>
                     </li>
                 </ul>
             </div>
@@ -114,6 +117,8 @@
                             <th>姓名</th>
                             <th>出勤情况</th>
                             <th>级别</th>
+                            <th>请假</th>
+                            <th>修改信息</th>
                             <!--  <th>###</th> -->
                         </tr>
                         </thead>
@@ -141,14 +146,14 @@
     <!-- jQuery -->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/jquery.js"></script>
-    <script src="js/depart.js"><</script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
     <script src="js/plugins/morris/raphael.min.js"></script>
-
+<script src="js/depart.js"><</script>
     <script>
     $(document).ready(function(){  
 		getUsername();
@@ -185,9 +190,9 @@
 
         if(array['moment']==1)
             moment="上班";
-        if(array['moment']==0)
-            moment="下班";
         if(array['moment']==2)
+            moment="下班";
+        if(array['moment']==10)
             moment="请假";
         if(array['moment']==3)
             moment="缺勤";
@@ -199,6 +204,8 @@
         li+="<td>"+array['a_name']+"</td>";
         li+="<td>"+moment+"</td>";
         li+="<td>"+level+"</td>";
+        li+="<td>"+"<a href='/hotel_control_system/view/aLeave.php?u_id="+array['u_id']+"'>请假</a></td>"
+        li+="<td>"+"<a href='/hotel_control_system/view/aChange.php?u_id="+array['u_id']+"'>修改</a></td>"
         li+="</tr>";
         });  
     $("#tbody").append(li);  

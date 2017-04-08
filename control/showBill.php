@@ -3,7 +3,7 @@ require "F:/Apache24/htdocs/hotel_control_system/model/db_control.php";
 $page=$_POST['pageNum'];
 $conn=new db_control();
 $conn->db_connect();
-$conn->select_db($tableName="admin_list");
+$conn->select_db($tableName="bill_info","*",$where="b_status=3");
 $result=$conn->return_result();
 $total=mysqli_num_rows($result);
 $pageSize=6;//每页显示数，（这部分如果有必要可以设计接口）
@@ -13,17 +13,17 @@ $arr['total']=$total;
 $arr['pageSize']=$pageSize;
 $arr['totalPage']=$totalPage;
 $c_conn=$conn->return_conn();
-//$sql2="select * from admin_list order by u_id asc limit $startPage,$pageSize";
-$query=mysqli_query($c_conn,"select * from admin_list order by u_id asc limit $startPage,$pageSize");
+$string="select * from bill_info where b_status=2 order by b_id asc limit $startPage,$pageSize";
+$query=mysqli_query($c_conn,"select * from bill_info where b_status=2 order by b_id asc limit $startPage,$pageSize");
 while($row=mysqli_fetch_array($query)){
     $arr['list'][]=array(
-      'u_id'=>$row['u_id'],
-      'a_name'=>$row['a_name'],
-      'a_level'=>$row['a_level'],
-      'moment'=> $row['moment']
+       'b_id'=>$row['b_id'],
+      'r_id'=>$row['b_rom_id'],
+      'checkin'=>$row['b_r_start_time'],
+      'checkout'=> $row['b_r_end_time'],
+        'r_price'=>$row['price']
     );
 }
-//$string =json_encode($arr);
 echo json_encode($arr);
 ?>
 

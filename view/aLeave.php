@@ -81,7 +81,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        房间维护
+                        请假
                     </h1>
 
                 </div>
@@ -132,22 +132,22 @@
 <script src="js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
+<script src="js/depart.js"><</script>
 <script>
+$(document).ready(function(){  
+	getUsername();
+});
 function getUrlParam(name) {
 	 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	 var r = window.location.search.substr(1).match(reg); //匹配目标参数
 	 if (r != null) return unescape(r[2]); return null; //返回参数值
 	}
-var r_id=getUrlParam('r_id');
-li="<form action='/hotel_control_system/control/mRoom.php' method='post'>";
-li+="房间号:<input type='text' name='r_id' value='"+r_id+"' readonly/><br/>";
-li+="房间人数<input type='number' name='r_size'/><br />";
-li+="房间描述<input type='text' name='r_details'/><br/>";
-li+="房间价格<input type='number' step='0.1' name='r_price' /><br />";
-li+="房间折扣<input type='number' step='0.01' name='r_discount'>";
-li+="房间状态<select name='r_status'><option value=1>正常使用</option><option value=10>维护中</option></select><br />";
-li+="维护时间<input type='date' name='m_time'><br />";
-li+="维护描述<input type='text' name='m_describe'><br />";
+var u_id=getUrlParam('u_id');
+li="<form action='/hotel_control_system/control/aLeave.php' method='post'>";
+li+="管理员编号:<input type='text' name='u_id' value='"+u_id+"' readonly/><br/>";
+li+="请假开始日期<input type='date' name='aLeaveStart'/><br />";
+li+="请假结束时间<input type='date' name='aLeaveEnd'/><br/>";
+li+="请假类型<select name='aLeaveType'><option value=1>病假</option><option value=2>事假</option></select><br />";
 li+="<input type='submit' value='提交'></form>";
 
 $(document).ready(function(){  

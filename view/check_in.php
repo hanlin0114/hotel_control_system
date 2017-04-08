@@ -55,7 +55,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <sapn id="welcome"></sapn> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 打卡</a>
+                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 上班</a>
                         </li>
                         <li>
                             <a href="/hotel_control_system/control/clock_out.php"><i class="fa fa-fw "></i> 下班</a>
@@ -63,7 +63,7 @@
 
                         <li class="divider"></li>
                         <li>
-                            <a href="/hotel_control_system/control/a_loginout"><i class="fa fa-fw"></i> 登出</a>
+                            <a href="/hotel_control_system/control/a_loginout.php"><i class="fa fa-fw"></i> 登出</a>
                         </li>
                     </ul>
                 </li>

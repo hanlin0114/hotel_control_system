@@ -52,10 +52,10 @@
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span id="welcome"></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 打卡</a>
+                            <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 上班</a>
                         </li>
                         <li>
                             <a href="/hotel_control_system/control/clock_out.php"><i class="fa fa-fw "></i> 下班</a>
@@ -63,7 +63,7 @@
 
                         <li class="divider"></li>
                         <li>
-                            <a href="/hotel_control_system/control/a_loginout"><i class="fa fa-fw"></i> 登出</a>
+                            <a href="/hotel_control_system/control/a_loginout.php"><i class="fa fa-fw"></i> 登出</a>
                         </li>
                     </ul>
                 </li>
@@ -111,8 +111,8 @@
                 <table class="table table-bordered table-hover definewidth m10">
                     <thead>
                     <tr id="roomDetail">
+                        <th>订单号</th>
                         <th>房间号</th>
-                        <th>入住人身份证号码</th>
                         <th>入住日期</th>
                         <th>退房日期</th>
                         <th>收入金额</th>
@@ -146,9 +146,7 @@
 <script src="js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
-<script src="js/plugins/morris/raphael.min.js"></script>
-<script src="js/plugins/morris/morris.min.js"></script>
-<script src="js/plugins/morris/morris-data.js"></script>
+
 <script src="js/depart.js"></script>
  <script>
     $(document).ready(function(){  
@@ -160,7 +158,7 @@
     function getData(page){   
     $.ajax({  
     type: 'POST',  
-    url: '/hotel_control_system/control/showCheckIn.php',  
+    url: '/hotel_control_system/control/showBill.php',  
     data: {'pageNum':page-1},  
     dataType:'json',    
     success:function(json){  
@@ -175,31 +173,12 @@
     var moment
     $.each(list,function(index,array){ //遍历json数据列  
     //li += "<li><a href='#'>"+array['title']+"</a></li>";  
-        if(array['a_level']==1)
-            level="一般管理员";
-        if(array['a_level']==2)
-            level="经理";
-        if(array['a_level']==3)
-            level="超级管理员";
-        if(array['a_level']==0)
-            level="离职";
-
-        if(array['moment']==1)
-            moment="上班";
-        if(array['moment']==0)
-            moment="下班";
-        if(array['moment']==2)
-            moment="请假";
-        if(array['moment']==3)
-            moment="缺勤";
-        if(array['moment']==4)
-            moment="迟到";
-
-
         li+="<tr>";
-        li+="<td>"+array['a_name']+"</td>";
-        li+="<td>"+moment+"</td>";
-        li+="<td>"+level+"</td>";
+        li+="<td>"+array['b_id']+"</td>";
+        li+="<td>"+array['r_id']+"</td>";
+        li+="<td>"+array['checkin']+"</td>";
+        li+="<td>"+array['checkout']+"</td>";
+        li+="<td>"+array['r_price']+"</td>";
         li+="</tr>";
         });  
     $("#tbody").append(li);  

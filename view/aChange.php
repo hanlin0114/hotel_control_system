@@ -132,22 +132,24 @@
 <script src="js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
+<script src="js/depart.js"><</script>
 <script>
+$(document).ready(function(){  
+	getUsername();
+});
 function getUrlParam(name) {
 	 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	 var r = window.location.search.substr(1).match(reg); //匹配目标参数
 	 if (r != null) return unescape(r[2]); return null; //返回参数值
 	}
-var r_id=getUrlParam('r_id');
-li="<form action='/hotel_control_system/control/mRoom.php' method='post'>";
-li+="房间号:<input type='text' name='r_id' value='"+r_id+"' readonly/><br/>";
-li+="房间人数<input type='number' name='r_size'/><br />";
-li+="房间描述<input type='text' name='r_details'/><br/>";
-li+="房间价格<input type='number' step='0.1' name='r_price' /><br />";
-li+="房间折扣<input type='number' step='0.01' name='r_discount'>";
-li+="房间状态<select name='r_status'><option value=1>正常使用</option><option value=10>维护中</option></select><br />";
-li+="维护时间<input type='date' name='m_time'><br />";
-li+="维护描述<input type='text' name='m_describe'><br />";
+var u_id=getUrlParam('u_id');
+li="<form action='/hotel_control_system/control/aChange.php' method='post'>";
+li+="管理员编号:<input type='text' name='u_id' value='"+u_id+"' readonly/><br/>";
+li+="管理员姓名<input type='text' name='username'/><br />";
+li+="管理员密码<input type='password' name='password'/><br/>";
+li+="确认密码<input type='password' name='rePassword'><br />"
+li+="管理员性别<select name='sex'><option value=1>男</option><option value=2>女</option></select><br />";
+li+="管理员等级<select name='aLevel'><option value=1>一般管理员</option><option value=2>经理</option><option value=3>超级管理员</option><option value=0>离职</option>";
 li+="<input type='submit' value='提交'></form>";
 
 $(document).ready(function(){  
