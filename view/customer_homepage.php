@@ -162,7 +162,7 @@ $(document).ready(function(){
 <body>
 <div>
 <div class="div-float" style="width:30em;margin:0em 0em 0em 10em;">
-<h1>hotel manage system</h1>
+<h1><a href="/hotel_control_system/view/customer_homepage.php">hotel manage system</a></h1>
 </div>
 <div id ="registertag" class="div-float1" id="welcome" style="width:5em;margin:2em 0em 0em 2em;font-size:1.2em">
 	<a href="loginout.php">登出</a>

@@ -22,7 +22,7 @@
 <body>
 <div style="height:10em">
 <div class="div-float" style="width:30em;margin:0em 0em 0em 10em;">
-<h1>hotel manage system</h1>
+<h1><a href="/hotel_control_system/view/customer_homepage.php">hotel manage system</a></h1>
 </div>
 <div id ="registertag" class="div-float1" id="welcome" style="width:5em;margin:2em 0em 0em 2em;font-size:1.2em">
 	<a href="loginout.php">登出</a>
@@ -44,22 +44,12 @@
 </div>
 <div id ="welcome" class="div-float1" style="width:5em;margin:2em 0em 0em 2em;font-size:1.2em">
 </div>
-<table class='table table-bordered table-hover definewidth m10' >
-    <thead>
-    <tr id='roomDetail'>
-        <th>订单号</th>
-        <th>房间号</th>
-        <th>入住日期</th>
-        <th>退房日期</th>
-        <th>价格</th>
-         <th>付款</th>
-        <th>退订</th>
-    </tr>
-    </thead>
-    <tbody id="main">
-    
-    </tbody>
-    </table>
+</div>
+<div align="center">
+<form action="/hotel_control_system/control/changePassword.php" method="post">
+请输入新密码<input type="password" name="password"><br>
+<input type="submit" value="确认">
+</form>
 </div>
 <script src="js/depart.js"></script>
 <script>
