@@ -17,6 +17,7 @@ class user_lgr{
 			$_SESSION["username"]=$obj->username;//写入用户名
 			$_SESSION["u_id"]=$obj->u_id;//写入用户标志
 			$_SESSION["u_level"]=$obj->u_level;//写入用户等级
+			$_SESSION['email']=$obj->email;
 			//setcookie("userrname",$obj->username);//写入cookie以用来用户交互
 			return 1;
 		}

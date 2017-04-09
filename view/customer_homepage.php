@@ -82,24 +82,20 @@ $(document).ready(function(){
     }  
     });  
     }
-    function book(page){
+    function book(){
 		 manNum=$('#manNum').val();
 		 startDate=$('#startDate').val();
 		 endDate=$('#endDate').val();
         $('#roomDetail').empty(); 
-        var tableHead="<td>"+"房间号"+"</td>"+"<td>"+"描述"+"</td>"+"<td>"+"价格"+"</td>"+"<td>"+"预订"+"</td>";
+        var tableHead="<th>"+"房间号"+"</th>"+"<th>"+"描述"+"</th>"+"<th>"+"价格"+"</th>"+"<th>"+"预订"+"</th>";
         $('#roomDetail').append(tableHead);
 	    $.ajax({  
 	        type: 'POST',  
 	        url: '/hotel_control_system/control/book.php',  
-	        data: {'pageNum':page-1,'manNum':manNum,'startDate':startDate,'endDate':endDate},  
+	        data: {'manNum':manNum,'startDate':startDate,'endDate':endDate},  
 	        dataType:'json',    
 	        success:function(json){  
 	        $("#tbody").empty();
-	        total = json.total; //总记录数  
-	        pageSize = json.pageSize; //每页显示条数  
-	        curPage = page; //当前页  
-	        totalPage = json.totalPage; //总页数  
 	        var li = "";  
 	        var list = json.list;  
 	        $.each(list,function(index,array){ //遍历json数据列  
@@ -119,7 +115,7 @@ $(document).ready(function(){
 	        },  
 	        error:function(){  
 	        
-	        $('#tbody').append(li);
+	        //$('#tbody').append(li);
 	        }  
 	        });  
         }  
@@ -158,13 +154,7 @@ $(document).ready(function(){
     }  
     });
     $("#confirm").click(function(){
-        book(1);
-        $("#pagecount").on('click','span a',function(){  
-            var rel = $(this).attr("rel");  
-            if(rel){  
-            book(rel);  
-            }  
-            });
+        book();
     });
     });  
     </script>
@@ -181,20 +171,16 @@ $(document).ready(function(){
 	<button type="button" class="btn btn-link dropdown-toggle text-nodecoration" data-toggle="dropdown">
 	   订单信息<span class="caret"></span>
 	</button>
-	<ul class="dropdown-menu" role="menu">
-	   <li><a href="/hotel_control_system/control/checkUpay.php">未支付订单</a></li>
-	   <li><a href="/hotel_control_system/control/checkPaid.php">已支付订单</a></li>
-	   <li><a href="/hotel_control_system/control/checkFinish.php">已完成订单</a></li>
+	<ul class="dropdown-menu" role="menu" id="customerBill">
+
 	</ul>
 </div>
 <div id ="detail" class="btn-group div-float1 " style="width:5em;margin:1.8em 0em 0em 2em;font-size:1.2em">
 	<button type="button" class="btn btn-link dropdown-toggle text-nodecoration" data-toggle="dropdown">
 	   用户信息<span class="caret"></span>
 	</button>
-	<ul class="dropdown-menu" role="menu">
-	   <li><a href="/hotel_control_system/control/showInfo.php">查看信息</a></li>
-	   <li><a href="/hotel_control_system/control/changeNick.php">修改昵称</a></li>
-	   <li><a href="/hotel_control_system/control/changePassword.php">修改密码</a></li>
+	<ul class="dropdown-menu" role="menu" id="customerInfo">
+
 	</ul>
 </div>
 <div id ="welcome" class="div-float1" style="width:5em;margin:2em 0em 0em 2em;font-size:1.2em">
@@ -228,7 +214,13 @@ $(document).ready(function(){
 
     </div>
     <div id="pagecount" align="center"></div>
-    
+
+<script src="js/depart.js"><</script>
+<script>
+$(document).ready(function(){  
+	getHeadLine();
+});
+</script>
     
 </body>
 </html>
