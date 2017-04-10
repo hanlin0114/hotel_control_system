@@ -46,13 +46,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">hotel_control_system</a>
+            <a class="navbar-brand" href="admin_homepage.php">hotel_control_system</a>
         </div>
         <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span id="welcome"></span> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span id="welcome"></span><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 上班</a>
@@ -74,19 +74,19 @@
                 <li >
                     <a href="admin_homepage.php"><i class="fa fa-fw"></i> 管理员名单</a>
                 </li>
-                <li>
+                <li >
                     <a href="check_in.php"><i class="fa fa-fw"></i> 房间入住</a>
                 </li>
-                <li>
+                <li >
                     <a href="check_out.php"><i class="fa fa-fw"></i> 房间退房</a>
                 </li>
-                <li>
+                <li >
                     <a href="maintenance.php"><i class="fa fa-fw"></i> 房间维护</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="bill.php"><i class="fa fa-fw"></i> 统计流水</a>
                 </li>
-                 <li>
+                 <li class="active">
                     <a href="pendBill.php"><i class="fa fa-fw"></i> 待处理的订单</a>
                 </li>
             </ul>
@@ -102,7 +102,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        查看流水
+                        房间维护
                     </h1>
 
                 </div>
@@ -116,17 +116,17 @@
                     <tr id="roomDetail">
                         <th>订单号</th>
                         <th>房间号</th>
-                        <th>入住日期</th>
-                        <th>退房日期</th>
-                        <th>订单状态</th>
-                        <th>价格</th>
+                        <th>入住时间</th>
+                        <th>退房时间</th>
+                        <th>当前价格</th>
+                        <th>确认退款</th>
                         <!--  <th>###</th> -->
                     </tr>
                     </thead>
                     <tbody id="tbody">
 
                     </tbody>
-                    
+                    <div id="pagecount" align="center"></div>
                 </table>
             </div>
 
@@ -150,7 +150,6 @@
 <script src="js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
-
 <script src="js/depart.js"></script>
  <script>
     $(document).ready(function(){  
@@ -162,7 +161,7 @@
     function getData(page){   
     $.ajax({  
     type: 'POST',  
-    url: '/hotel_control_system/control/showBill.php',  
+    url: '/hotel_control_system/control/pendBill.php',  
     data: {'pageNum':page-1},  
     dataType:'json',    
     success:function(json){  
@@ -173,41 +172,18 @@
     totalPage = json.totalPage; //总页数  
     var li = "";  
     var list = json.list;  
-    
-    var moment;
-    var tag;
+	var des;
     $.each(list,function(index,array){ //遍历json数据列  
     //li += "<li><a href='#'>"+array['title']+"</a></li>";  
-    	tag=parseInt(array['status']);
-    	switch(tag){
-    	case 0:
-        	moment="已取消";
-        	break;
-    	case -1:
-        	moment="等待退款";
-        	break;
-    	case 1:
-        	moment="已下订单";
-        	break;
-    	case 2:
-        	moment="已付款";
-        	break;
-    	case 3:
-        	moment="已入住";
-        	break;
-    	case 4:
-        	moment="已完成";
-        	break;
-    	}
-		 
+
+
         li+="<tr>";
         li+="<td>"+array['b_id']+"</td>";
         li+="<td>"+array['r_id']+"</td>";
-        li+="<td>"+array['checkin']+"</td>";
-        li+="<td>"+array['checkout']+"</td>";
-        li+="<td>"+moment+"</td>";
-        li+="<td>"+array['r_price']+"</td>";
-        
+        li+="<td>"+array['startTime']+"</td>";
+        li+="<td>"+array['endTime']+"</td>";
+        li+="<td>"+array['price']+"</td>";
+        li+="<td>"+"<a href='/hotel_control_system/control/dealPend.php?b_id="+array['b_id']+"'>确认退款</a></td>"
         li+="</tr>";
         });  
     $("#tbody").append(li);  
@@ -253,6 +229,7 @@
         });
     });
     </script>
+
 
 </body>
 

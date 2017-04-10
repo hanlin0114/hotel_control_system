@@ -87,7 +87,7 @@
                         <a href="bill.php"><i class="fa fa-fw"></i> 统计流水</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw"></i>管理已注册顾客</a>
+                        <a href="pendBill.php"><i class="fa fa-fw"></i> 待处理的订单</a>
                     </li>
                 </ul>
             </div>
