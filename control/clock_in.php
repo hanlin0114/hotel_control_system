@@ -1,7 +1,7 @@
 <?php
 require 'F:/Apache24/htdocs/hotel_control_system/model/db_control.php';
 session_start();
-$a_id=1;//$_SESSION['u_id'];
+$a_id=$_SESSION['u_id'];
 $conn=new db_control();
 $conn->db_connect();
 $conn->select_db($tableName="admin_list","moment",$where="u_id=$a_id");
