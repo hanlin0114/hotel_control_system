@@ -40,7 +40,7 @@ else{
         <td font-size:200%>".$endDate."</td>
       </tr>
       <tr>
-        <td><form action='/hotel_control_system/control/pay.php' method='post'>
+        <td><form action='/hotel_control_system/control/pPay.php' method='post'>
             请输入身份证号码:<input type='text' name='c_id'>
           <input type='submit' value='预订'>
         </form>

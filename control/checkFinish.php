@@ -16,7 +16,7 @@ $arr['pageSize']=$pageSize;
 $arr['totalPage']=$totalPage;
 $c_conn=$conn->return_conn();
 $string="select * from bill_info where b_customer_id=$u_id and b_status=1 order by b_id asc limit $startPage,$pageSize";
-$query=mysqli_query($c_conn,"select * from bill_info where b_customer_id=$u_id and b_status=3 order by b_id asc limit $startPage,$pageSize");
+$query=mysqli_query($c_conn,"select * from bill_info where (b_customer_id=$u_id and b_status=3) or (b_customer_id=$u_id and b_status=0) order by b_id asc limit $startPage,$pageSize");
 while($row=mysqli_fetch_array($query)){
     $arr['list'][]=array(
       'b_id'=>$row['b_id'],

@@ -94,7 +94,7 @@ $.each(list,function(index,array){ //遍历json数据列
 	li+="<td>"+array['end_time']+"</td>";
 	li+="<td>"+array['price']+"</td>";
 	li+="<td><a href='/hotel_control_system/view/pay.php?b_id="+array['b_id']+"'>付款</a></td>";
-	li+="<td><a href='/hotel_control_system/view/cancel.php?b_id="+array['b_id']+"'>退订</a></td>";
+	li+="<td><a href='/hotel_control_system/control/cancel.php?b_id="+array['b_id']+"'>退订</a></td>";
 	li+="</tr>"
     });  
 $("#tbody").append(li);  
