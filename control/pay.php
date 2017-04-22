@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "F:/Apache24/htdocs/hotel_control_system/model/db_control.php";
-$b_id='201704031414:59:1000001';//$_POST['b_id'];
+$b_id=$_POST['b_id'];
 
 $conn=new db_control();
 $conn->db_connect();

@@ -1,5 +1,6 @@
 <?php
 require 'F:/Apache24/htdocs/hotel_control_system/model/db_control.php';
+require 'F:/Apache24/htdocs/hotel_control_system/model/dateControl.php';
 session_start();
 $r_id=$_GET['r_id'];
 $r_price=$_GET['r_price'];
@@ -20,12 +21,22 @@ else{
     $_SESSION['r_discount']=$r_discount;
     $_SESSION['startDate']=$startDate;
     $_SESSION['endDate']=$endDate;
-    $totalprice=$r_price*$r_discount;
+    $day=countDate($endDate, $startDate);
+    $price=$r_price*$r_discount;
+    $totalprice=$price*$day;
     echo "<html><div align='center' margin='5em'>
     <table>
       <tr>
         <td font-size:200%>房间号</td>
         <td font-size:200%>".$r_id."</td>
+      </tr>
+      <tr>
+        <td font-size:200%>每日价格</td>
+        <td font-size:200%>".$price."</td>
+      </tr>
+        <tr>
+        <td font-size:200%>入住天数</td>
+        <td font-size:200%>".$day."</td>
       </tr>
       <tr>
         <td font-size:200%>价格</td>
