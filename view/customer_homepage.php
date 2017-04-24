@@ -86,6 +86,13 @@ $(document).ready(function(){
 		 manNum=$('#manNum').val();
 		 startDate=$('#startDate').val();
 		 endDate=$('#endDate').val();
+		 var sT=new Date(startDate);//将入住时间转化成Js对象以便比较
+		 var eT=new Date(endDate);//将退房时间转化成JS对象以便比较
+		 var mT=new Date();
+		 if(sT.getTime()>eT.getTime()||sT.getTime()<mT.getTime()){
+			alert('您选择的日期不合法，请重新选择');
+			return 0;
+		}
         $('#roomDetail').empty(); 
         var tableHead="<th>"+"房间号"+"</th>"+"<th>"+"描述"+"</th>"+"<th>"+"价格"+"</th>"+"<th>"+"预订"+"</th>";
         $('#roomDetail').append(tableHead);

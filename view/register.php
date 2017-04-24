@@ -88,7 +88,21 @@ html,body {
 	padding: 8px 24px !important;
 	font-size: 16px !important;
 }
+
 </style>
+<script type="text/javascript">
+function validate(){
+	var pwd = document.getElementById("password").value;
+	var repwd = document.getElementById("repassword").value;
+	if(pwd!=repwd){
+		alert("两次密码不一致，请检查");
+		document.getElementById("btn").disabled=true; 
+	}
+	else{
+		document.getElementByIdx("btn").disabled=false; 
+	}
+}
+</script>
 </head>
 <body>
 	<div class="container">
@@ -148,7 +162,7 @@ html,body {
 				</div>
 				<div class="form-group form-actions">
 					<div class="col-xs-4 col-xs-offset-4 ">
-						<button type="submit" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-off"></span> 注册</button>
+						<button type="submit" class="btn btn-sm btn-info" id="btn"><span class="glyphicon glyphicon-off"></span> 注册</button>
 					</div>
 				</div>
 				<div class="form-group">

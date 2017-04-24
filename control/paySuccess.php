@@ -11,7 +11,7 @@ $result=$conn->return_result();
 if(mysqli_num_rows($result)){
     //$conn->update_db($tablename="bill_info",$arr=array('b_status'=>2),$where="b_id='$b_id'");
     $c_conn=$conn->return_conn();
-    $result=mysqli_query($c_conn, "update bill_info set b_status=2 where b_id='$b_id'");
+   // $result=mysqli_query($c_conn, "update bill_info set b_status=2 where b_id='$b_id'");
    //$result=$conn->return_result();
     if($result)
         header('location:../view/operationSuccess.php');

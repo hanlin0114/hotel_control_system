@@ -5,6 +5,11 @@ $email=$_POST['email'];
 $username=$_POST['username'];
 $sex=$_POST['sex'];
 $password=$_POST['password'];
+$repassword=$_POST['repassword'];
+if($password!=$repassword){
+    header('Location:view/n_reg_error.php');
+}
+else{
 $user_reg=new user_lgr();
 if($sex=="保密")
 	$sex=0;
@@ -22,5 +27,6 @@ else if($result==-1){
 else if($result==0){
 	header('location:view/reg_sql_error.php');
 	
+}
 }
 ?>
