@@ -10,5 +10,5 @@ if($result){
 	header('Location:../view/admin_homepage.php');
 }
 else{
-	header('Location:view/login_error.php');
+	header('Location:../view/login_error.php');
 }

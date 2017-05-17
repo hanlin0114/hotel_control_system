@@ -1,4 +1,4 @@
-<?php //这部分现在存在逻辑问题
+<?php 
 require 'F:/Apache24/htdocs/hotel_control_system/model/db_control.php';
 session_start();
 $num=$_POST['manNum'];

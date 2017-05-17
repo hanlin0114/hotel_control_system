@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,13 +46,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="admin_homepage.php">hotel_control_system</a>
+            <a class="navbar-brand" href="index.html">hotel_control_system</a>
         </div>
         <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span id="welcome"></span><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i><span id="welcome"></span> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/hotel_control_system/control/clock_in.php"><i class="fa fa-fw"></i> 上班</a>
@@ -75,19 +74,19 @@
                 <li >
                     <a href="admin_homepage.php"><i class="fa fa-fw"></i> 管理员名单</a>
                 </li>
-                <li >
+                <li>
                     <a href="check_in.php"><i class="fa fa-fw"></i> 房间入住</a>
                 </li>
-                <li >
+                <li>
                     <a href="check_out.php"><i class="fa fa-fw"></i> 房间退房</a>
                 </li>
-                <li >
+                <li>
                     <a href="maintenance.php"><i class="fa fa-fw"></i> 房间维护</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="bill.php"><i class="fa fa-fw"></i> 统计流水</a>
                 </li>
-                 <li class="active">
+                 <li>
                     <a href="pendBill.php"><i class="fa fa-fw"></i> 待处理的订单</a>
                 </li>
                 <li>
@@ -106,7 +105,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        待处理订单
+                        增加房间
                     </h1>
 
                 </div>
@@ -115,29 +114,14 @@
 
             <!-- /.row -->
             <div class="row">
-                <table class="table table-bordered table-hover definewidth m10">
-                    <thead>
-                    <tr id="roomDetail">
-                        <th>订单号</th>
-                        <th>房间号</th>
-                        <th>入住时间</th>
-                        <th>退房时间</th>
-                        <th>当前价格</th>
-                        <th>确认退款</th>
-                        <!--  <th>###</th> -->
-                    </tr>
-                    </thead>
-                    <tbody id="tbody">
-
-                    </tbody>
-                    <div id="pagecount" align="center"></div>
-                </table>
+                <p>房间号：<input type="number" id="r_id"/></p>
+                <p>房间人数：<input type="number" id="r_size"/></p>
+                <p>描述：<input type="text" id="r_details"/></p>
+                <p>价格：<input type="number" id="r_price"/></p>
+                <p>折扣：<input type="number" id="r_discount"/></p>
+                <p><button id="comfirm">添加</button></p>
+                <p><label id="show"></label></p>
             </div>
-
-
-
-
-
         </div>
         <!-- /.container-fluid -->
 
@@ -154,86 +138,42 @@
 <script src="js/bootstrap.min.js"></script>
 
 <!-- Morris Charts JavaScript -->
+
 <script src="js/depart.js"></script>
  <script>
     $(document).ready(function(){  
 		getUsername();
 	});
-    var curPage = 1; //当前页码  
-    var total,pageSize,totalPage;  
-    //获取数据  
-    function getData(page){   
-    $.ajax({  
-    type: 'POST',  
-    url: '/hotel_control_system/control/pendBill.php',  
-    data: {'pageNum':page-1},  
-    dataType:'json',    
-    success:function(json){  
-    $("#tbody").empty();  
-    total = json.total; //总记录数  
-    pageSize = json.pageSize; //每页显示条数  
-    curPage = page; //当前页  
-    totalPage = json.totalPage; //总页数  
-    var li = "";  
-    var list = json.list;  
-	var des;
-    $.each(list,function(index,array){ //遍历json数据列  
-    //li += "<li><a href='#'>"+array['title']+"</a></li>";  
-
-
-        li+="<tr>";
-        li+="<td>"+array['b_id']+"</td>";
-        li+="<td>"+array['r_id']+"</td>";
-        li+="<td>"+array['startTime']+"</td>";
-        li+="<td>"+array['endTime']+"</td>";
-        li+="<td>"+array['price']+"</td>";
-        li+="<td>"+"<a href='/hotel_control_system/control/dealPend.php?b_id="+array['b_id']+"'>确认退款</a></td>"
-        li+="</tr>";
-        });  
-    $("#tbody").append(li);  
-    },  
-    complete:function(){ //生成分页条  
-    getPageBar();  
-    },  
-    error:function(){  
-    alert("数据加载失败");  
-    }  
-    });  
-    }
-    function getPageBar(){
-        //页码大于最大页数
-        if(curPage>totalPage) curPage=totalPage;
-        //页码小于1
-        if(curPage<1) curPage=1;
-        pageStr = "<span>共"+total+"条</span><span>"+curPage+"/"+totalPage+"</span>";
-
-        //如果是第一页
-        if(curPage==1){
-            pageStr += "<span>首页</span><span>上一页</span>";
-        }else{
-            pageStr += "<span><a href='javascript:void(0)' rel='1'>首页</a></span><span><a href='javascript:void(0)' rel='"+(curPage-1)+"'>上一页</a></span>";
-        }
-
-        //如果是最后页
-        if(curPage>=totalPage){
-            pageStr += "<span>下一页</span><span>尾页</span>";
-        }else{
-            pageStr += "<span><a href='javascript:void(0)' rel='"+(parseInt(curPage)+1)+"'>下一页</a></span><span><a href='javascript:void(0)' rel='"+totalPage+"'>尾页</a></span>";
-        }
-
-        $("#pagecount").html(pageStr);
-    }
+ 
     $(function(){  
-    	getData(1);  
-        $("#pagecount").on('click','span a',function(){  
-        var rel = $(this).attr("rel");  
-        if(rel){  
-        getData(rel);  
-        }  
+        $('#comfirm').click(function(){
+            var r_id=$('#r_id').val();
+            var r_size=$('#r_size').val();
+            var r_details=$('#r_details').val();
+            var r_price=$('#r_price').val();
+            var r_discount=$('#r_discount').val();
+            $.ajax({
+                type:'post',
+                url:'/hotel_control_system/control/addRoom.php',
+                data:{'r_id':r_id,'r_size':r_size,'r_details':r_details,'r_price':r_price,'r_discount':r_discount},
+                dataType:'json',
+                success:function(json){
+                    $('#show').empty();
+                    $('#show').append('添加成功');
+                    $('#r_id').val("");
+                    $('#r_size').val("");
+                    $('#r_details').val("");
+                    $('#r_price').val("");
+                    $('#r_discount').val("");
+                },
+                error:function(){
+                    $('#show').empty();
+                    $('#show').append('添加失败');
+                }
+            });
         });
     });
     </script>
-
 
 </body>
 

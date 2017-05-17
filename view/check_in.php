@@ -89,6 +89,9 @@
                  <li>
                     <a href="pendBill.php"><i class="fa fa-fw"></i> 待处理的订单</a>
                 </li>
+                <li>
+                    <a href="addRoom.php"><i class="fa fa-fw"></i> 增加房间</a>
+                 </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

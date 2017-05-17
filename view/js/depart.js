@@ -8,6 +8,9 @@ function getUsername(){
             //i表示在data中的索引位置，n表示包含的信息的对象
             	value=data.username;
             $('#welcome').append(value);
+        },
+        error:function(){
+            window.location="SessionError.php";
         }
     });
     return false;

@@ -12,3 +12,4 @@ if($result){
 else{
 	header('Location:view/login_error.php');
 }
+?>
